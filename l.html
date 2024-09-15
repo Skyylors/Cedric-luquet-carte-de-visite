@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte de visite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .business-card {
+            width: 350px;
+            height: 200px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .business-card h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .business-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .business-card .contact-info {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .business-card .contact-info a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+
+        .business-card .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #0066cc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .download-button {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .download-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="business-card">
+        <div class="logo">CL</div>
+        <h1>Cédric Luquet</h1>
+        <p>Coordinateur SSI / Chargé d'Affaires</p>
+        <div class="contact-info">
+            <p>Tél: <a href="tel:+33633029207">+33 6 33 02 92 07</a></p>
+            <p>Email: <a href="mailto:cedric.luquet@groupesystea.com">cedric.luquet@groupesystea.com</a></p>
+            <p>Site Web: <a href="https://http://www.namixis.net/" target="_blank">http://www.namixis.net/</a></p>
+        </div>
+
+        <!-- Lien pour télécharger la vCard -->
+        <div class="download-button">
+            <a href="cedric-luquet.vcf" download="cedric-luquet.vcf">Télécharger la vCard</a>
+        </div>
+    </div>
+
+    <!-- Contenu de la vCard -->
+    <a id="vcard-content" style="display: none;">BEGIN:VCARD
+VERSION:3.0
+FN:Cédric Luquet
+ORG:Namixis & SSICoor
+TITLE:Coordinateur SSI / Chargé d'Affaires
+TEL;TYPE=work,voice:+33 6 33 02 92 07
+EMAIL;TYPE=internet:cedric.luquet@groupesystea.com
+URL:https://www.namixis.com
+END:VCARD</a>
+
+    <script>
+        // Générer et télécharger la vCard dynamiquement
+        const downloadLink = document.querySelector('.download-button a');
+        const vCardContent = document.querySelector('#vcard-content').textContent;
+
+        // Créer un fichier blob contenant le texte de la vCard
+        const blob = new Blob([vCardContent], { type: 'text/vcard' });
+        const url = URL.createObjectURL(blob);
+
+        // Mettre à jour le lien de téléchargement avec l'URL du blob
+        downloadLink.href = url;
+    </script>
+
+</body>
+</html>
